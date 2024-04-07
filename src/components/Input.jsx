@@ -52,7 +52,6 @@ function Input(props) {
           Due date:
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-              id="dueDate"
               name="dueDate"
               value={task.dueDate ? task.dueDate : null}
               format="DD-MM-YYYY"
