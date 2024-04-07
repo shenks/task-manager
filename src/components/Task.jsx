@@ -5,6 +5,10 @@ function Task(props) {
     ? props.task.dueDate.format("DD-MM-YYYY")
     : "";
 
+  function deleteTask() {
+    props.onDelete(props.task.id);
+  }
+
   return (
     <div>
       <div className="task">
@@ -13,7 +17,7 @@ function Task(props) {
         <p>Due date: {formattedDueDate}</p>
         <p>priority: {props.task.priority}</p>
 
-        <button>Delete</button>
+        <button onClick={deleteTask}>Delete</button>
       </div>
     </div>
   );
