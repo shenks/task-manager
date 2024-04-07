@@ -5,10 +5,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-// import FormControl from "@mui/material/FormControl";
-// import FormLabel from "@mui/material/FormLabel";
 
-function Input() {
+function Input(props) {
   const [task, setTask] = useState({
     title: "",
     description: "",
@@ -27,6 +25,12 @@ function Input() {
 
   function handlePriorityChange(event) {
     setTask({ ...task, priority: event.target.value });
+  }
+
+  function addTask(event) {
+    props.onAdd(task);
+    event.preventDefault();
+    setTask({ title: "", description: "", dueDate: "", priority: "" });
   }
 
   return (
@@ -51,6 +55,7 @@ function Input() {
               id="dueDate"
               name="dueDate"
               value={task.dueDate ? task.dueDate : null}
+              format="DD-MM-YYYY"
               onChange={handleDueDateChange}
             />
           </LocalizationProvider>
@@ -71,7 +76,7 @@ function Input() {
         </RadioGroup>
       </div>
 
-      <button>Add</button>
+      <button onClick={addTask}>Add</button>
     </form>
   );
 }
