@@ -21,6 +21,17 @@ function App() {
     });
   }
 
+  function updateTask(updatedTask) {
+    setTasks((prevTasks) => {
+      return prevTasks.map((task) => {
+        if (task.id === updatedTask.id) {
+          return { ...task, ...updatedTask };
+        }
+        return task;
+      });
+    });
+  }
+
   return (
     <div className="App">
       <Header />
@@ -32,6 +43,7 @@ function App() {
             id={taskItem.id}
             task={taskItem}
             onDelete={deleteTask}
+            onSave={updateTask}
           />
         );
       })}
